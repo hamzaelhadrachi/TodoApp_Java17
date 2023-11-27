@@ -50,10 +50,23 @@ public class TodoController {
 
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
-        //Delete todo
-
         todoService.deleteById(id);
         return "redirect:list-todos";
 
+    }
+    @GetMapping("update-todo")
+    public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
+        Todo todo = todoService.findById(id);
+        model.addAttribute("todo", todo);
+        return "todo";
+    }
+
+    @PostMapping("update-todo")
+    public String updateTodo(ModelMap model, Todo todo) {
+
+        String username = (String)model.get("name");
+        todo.setUserName(username);
+        todoService.updateTodo(todo);
+        return "redirect:list-todos";
     }
 }
