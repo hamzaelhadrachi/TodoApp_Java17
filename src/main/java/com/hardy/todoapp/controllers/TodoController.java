@@ -42,7 +42,7 @@ public class TodoController {
         todoService.addTodo(
                 userName,
                 todo.getDescription(),
-                LocalDate.now().plusWeeks(2),
+                todo.getTargetDate(),
                 false
         );
         return "redirect:list-todos";
