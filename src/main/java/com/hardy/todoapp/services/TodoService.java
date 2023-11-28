@@ -26,7 +26,7 @@ public class TodoService {
     public List<Todo> findByUserName(String user){
         logger.info("Todo Service user is: "+user);
 
-        return todos.stream().filter(t -> t.getUserName().equals(user)).collect(Collectors.toList());
+        return todos.stream().filter(t -> t.getUserName().equalsIgnoreCase(user)).collect(Collectors.toList());
     }
 
     public void addTodo(String userName, String description, LocalDate targetDate, boolean isDone){
